@@ -3,34 +3,343 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Мой сервер Minecraft</title>
+    <!-- ТЕГИ ДЛЯ ПОИСКОВИКОВ (SEO) -->
+    <meta name="description" content="Loyzi Vanilla House — уютный ванильный сервер Майнкрафт. Играй без грифа, читов и приватов. Подавай заявку на вайтлист!">
+    <meta name="keywords" content="лоузи, ванила хаус, loyzi, vanilla house, майнкрафт сервер, ванильный сервер майнкрафт, выживание без приватов, minecraft vanilla">
+    <meta name="author" content="Loyzi">
+    
+    <title>Loyzi Vanilla House — Майнкрафт Сервер</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
         body {
-            background-color: #1a1a1a;
+            background-color: #0f111a;
             color: #ffffff;
-            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Free entry banner at the top */
+        .free-banner {
+            background: linear-gradient(90deg, #27ae60, #2ecc71);
+            color: #0f111a;
             text-align: center;
-            padding-top: 50px;
+            padding: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(46, 204, 113, 0.3);
+            text-transform: uppercase;
         }
-        h1 {
-            color: #ffcc00;
+
+        /* Background glow effects */
+        .background-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle at 50% 20%, rgba(46, 204, 113, 0.15), transparent 60%);
+            z-index: -1;
+            pointer-events: none;
         }
-        .free-text {
-            font-size: 24px;
-            color: #4CAF50;
-            font-weight: bold;
-            margin-bottom: 20px;
+
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: #2ecc71;
+            text-shadow: 0 0 20px rgba(46, 204, 113, 0.4);
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #a0a5b5;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        /* Server IP Card */
+        .ip-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .ip-text {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #e0e0e0;
+            letter-spacing: 1px;
+        }
+
+        .copy-btn {
+            background: #2ecc71;
+            color: #0f111a;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #27ae60;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46, 204, 113, 0.4);
+        }
+
+        /* Container layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Features Section */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+
+        .feature-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px);
+            border-color: rgba(46, 204, 113, 0.3);
+        }
+
+        .feature-box h3 {
+            color: #2ecc71;
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .feature-box p {
+            color: #a0a5b5;
+            font-size: 0.95rem;
+        }
+
+        /* Rules Section */
+        .rules-section {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 60px;
+        }
+
+        .rules-section h2 {
+            text-align: center;
+            font-size: 2.2rem;
+            color: #ffffff;
+            margin-bottom: 30px;
+        }
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+        }
+
+        .rule-item {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px 25px;
+            border-radius: 12px;
+            border-left: 4px solid #e74c3c;
+        }
+
+        .rule-item h4 {
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .rule-item p {
+            color: #a0a5b5;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Whitelist Section */
+        .whitelist-section {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .whitelist-section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: #ffffff;
+        }
+
+        .whitelist-section p {
+            color: #a0a5b5;
+            margin-bottom: 30px;
+        }
+
+        .form-container {
+            position: relative;
+            width: 100%;
+            max-width: 750px;
+            margin: 0 auto;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            background: #ffffff;
+        }
+
+        iframe {
+            width: 100%;
+            height: 850px;
+            border: none;
+        }
+
+        .direct-link-btn {
+            display: inline-block;
+            margin-top: 20px;
+            color: #2ecc71;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .direct-link-btn:hover {
+            color: #27ae60;
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #606575;
+            font-size: 0.9rem;
         }
     </style>
 </head>
 <body>
 
-    <!-- Теперь эта надпись будет самой первой сверху -->
-    <div class="free-text">Вход бесплатный</div>
+    <!-- Вход бесплатный сверху в виде красивой плашки -->
+    <div class="free-banner">Вход бесплатный</div>
 
-    <h1>Добро пожаловать на мой сервер!</h1>
-    
-    <p>Заходите поиграть, ждем всех!</p>
+    <div class="background-glow"></div>
+
+    <header>
+        <h1>LOYZI VANILLA</h1>
+        <p>Уютный ванильный сервер Minecraft без гриферства и лишних модов. Заполняй заявку и присоединяйся к нам!</p>
+        
+        <div class="ip-card">
+            <span class="ip-text" id="server-ip">loyzi.vanilla.house</span>
+            <button class="copy-btn" onclick="copyIP()">Скопировать IP</button>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="features">
+            <div class="feature-box">
+                <h3>Чистая Ванилла</h3>
+                <p>Классический игровой процесс без донатов, ломающих баланс, и лишней приват-системы.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Вайтлист Доступ</h3>
+                <p>Строгий отбор игроков обеспечивает безопасность построек и адекватное комьюнити.</p>
+            </div>
+            <div class="feature-box">
+                <h3>Активное Сообщество</h3>
+                <p>Строим совместные города, проводим эвенты и общаемся в ламповой атмосфере.</p>
+            </div>
+        </div>
+
+        <div class="rules-section">
+            <h2>Правила сервера</h2>
+            <div class="rules-grid">
+                <div class="rule-item">
+                    <h4>1. Не читерить</h4>
+                    <p>Использование читов и любого стороннего ПО (включая X-Ray) строго запрещено.</p>
+                </div>
+                <div class="rule-item">
+                    <h4>2. Не оскорблять других игроков</h4>
+                    <p>Относитесь ко всем участникам с уважением. Токсичность и оскорбления запрещены.</p>
+                </div>
+                <div class="rule-item">
+                    <h4>3. Не гриферить</h4>
+                    <p>Запрещено разрушать, затапливать или как-либо портить чужие постройки.</p>
+                </div>
+                <div class="rule-item">
+                    <h4>4. Не брать чужое</h4>
+                    <p>Строго запрещено брать вещи других игроков из их сундуков, бочек и других хранилищ без их разрешения.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="whitelist-section">
+            <h2>Подать заявку на Вайтлист</h2>
+            <p>Заполни форму ниже, чтобы получить доступ к игре на сервере.</p>
+
+            <div class="form-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScey_c61z-cjnN9TbDrqRR7dQbZWdvHRrBGUmAoMTp4RErDIA/viewform?embedded=true">Загрузка формы...</iframe>
+            </div>
+
+            <link href="https://docs.google.com/forms/d/e/1FAIpQLScey_c61z-cjnN9TbDrqRR7dQbZWdvHRrBGUmAoMTp4RErDIA/viewform" target="_blank" class="direct-link-btn">
+                Не отображается форма? Открыть в отдельном окне ↗
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Loyzi Vanilla House. Все права защищены. Not an official Minecraft product.</p>
+    </footer>
+
+    <script>
+        function copyIP() {
+            const ip = document.getElementById('server-ip').innerText;
+            navigator.clipboard.writeText(ip).then(() => {
+                const btn = document.querySelector('.copy-btn');
+                btn.innerText = 'Скопировано!';
+                btn.style.background = '#27ae60';
+                
+                setTimeout(() => {
+                    btn.innerText = 'Скопировать IP';
+                    btn.style.background = '#2ecc71';
+                }, 2000);
+            });
+        }
+    </script>
 
 </body>
 </html>
